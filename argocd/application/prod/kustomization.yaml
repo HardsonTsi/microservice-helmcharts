@@ -1,15 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-resources:
   # - catalogue.yaml
   # - catalogue-db.yaml
-  - frontend.yaml
   # - recommendation.yaml
-  - voting.yaml
-
-commonLabels:
-  environment: prod
-  app.kubernetes.io/managed-by: kustomize
+resources:
+- frontend.yaml
+- voting.yaml
 
 namespace: argocd
+labels:
+- includeSelectors: true
+  pairs:
+    app.kubernetes.io/managed-by: kustomize
+    environment: prod
