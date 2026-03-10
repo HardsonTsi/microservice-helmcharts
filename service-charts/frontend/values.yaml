@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: hardsontsi/microservice-frontend
+  repository: hardsontessi/microservice-frontend
   tag: latest
   pullPolicy: Always
 

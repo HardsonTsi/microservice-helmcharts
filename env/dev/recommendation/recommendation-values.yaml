@@ -1,5 +1,5 @@
 image:
-  repository: hardsontsi/microservice-recommendation
+  repository: hardsontessi/microservice-recommendation
   tag: 1.0.2
 replicaCount: 2
 resources:

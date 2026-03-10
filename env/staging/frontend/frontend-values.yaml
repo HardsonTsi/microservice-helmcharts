@@ -1,5 +1,5 @@
 image:
-  repository: hardsontsi/microservice-frontend
+  repository: hardsontessi/microservice-frontend
   tag: 1.0.11
 
 replicaCount: 2

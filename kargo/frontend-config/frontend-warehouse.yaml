@@ -8,6 +8,6 @@ spec:
   interval: 1440m
   subscriptions:
     - image:
-        repoURL: docker.io/hardsontessi/microservice-frontend
+        repoURL: docker.io/hardsontsi/microservice-frontend
         imageSelectionStrategy: SemVer
         discoveryLimit: 20

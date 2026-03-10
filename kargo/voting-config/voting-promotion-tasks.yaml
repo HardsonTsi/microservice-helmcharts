@@ -6,7 +6,7 @@ metadata:
 spec:
   vars:
     - name: image
-      value: docker.io/hardsontsi/microservice-voting
+      value: docker.io/hardsontessi/microservice-voting
     - name: repoURL
       value: https://github.com/hardsontsi/microservice-helmcharts
     - name: branch
