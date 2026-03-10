@@ -20,6 +20,8 @@ spec:
         checkout:
           - branch: ${{ vars.branch }}
             path: ./out
+        auth:
+          secret: github-credentials
 
     - uses: yaml-update
       as: update-image
@@ -38,6 +40,8 @@ spec:
     - uses: git-push
       config:
         path: ./out
+      auth:
+        secret: github-credentials
 
     - uses: argocd-update
       config:
