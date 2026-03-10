@@ -8,6 +8,6 @@ spec:
   interval: 1440m
   subscriptions:
     - image:
-        repoURL: docker.io/hardsontsi/microservice-voting
+        repoURL: docker.io/hardsontessi/microservice-voting
         imageSelectionStrategy: SemVer
         discoveryLimit: 20
