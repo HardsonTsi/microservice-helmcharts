@@ -18,11 +18,10 @@ spec:
       config:
         repoURL: ${{ vars.repoURL }}
         checkout:
-          - branch: ${{ vars.branch }}
-            path: ./main
           - branch: ${{ vars.envPath }}
             path: ./out
             create: true
+            fromBranch: ${{ vars.branch }}
 
     - uses: yaml-update
       as: update-image
@@ -48,14 +47,14 @@ spec:
       as: open-pr
       config:
         repoURL: ${{ vars.repoURL }}
-        sourceBranch: ${{ outputs.push.branch }}
+        sourceBranch: ${{ vars.envPath }}
         targetBranch: ${{ vars.branch }}
 
-    - uses: git-wait-for-pr
-      as: wait-for-pr
+    - uses: git-merge-pr
       config:
         repoURL: ${{ vars.repoURL }}
-        prNumber: ${{ outputs['open-pr'].prNumber }}
+        prNumber: ${{ outputs['open-pr'].id }}
+        wait: true
 
     - uses: argocd-update
       config:
