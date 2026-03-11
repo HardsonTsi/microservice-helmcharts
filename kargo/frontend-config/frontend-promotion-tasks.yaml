@@ -38,6 +38,20 @@ spec:
     - uses: git-push
       config:
         path: ./out
+        generateTargetBranch: true
+
+    - uses: git-open-pr
+      as: open-pr
+      config:
+        repoURL: ${{ vars.repoURL }}
+        createTargetBranch: true
+        sourceBranchFrom: push
+        targetBranch: ${{ vars.branch }}
+
+    - uses: git-merge-pr
+      config:
+        repoURL: https://github.com/example/repo.git
+        prNumber: ${{ outputs['open-pr'].pr.id  }}
 
     - uses: argocd-update
       config:
