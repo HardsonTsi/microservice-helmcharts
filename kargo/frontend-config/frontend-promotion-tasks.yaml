@@ -8,7 +8,7 @@ spec:
     - name: image
       value: docker.io/hardsontessi/microservice-frontend
     - name: repoURL
-      value: https://github.com/hardsontsi/microservice-helmcharts
+      value: https://github.com/hardsontsi/microservice-helmcharts.git
     - name: branch
       value: main
     - name: envPath
@@ -20,8 +20,6 @@ spec:
         checkout:
           - branch: ${{ vars.branch }}
             path: ./out
-        auth:
-          secret: github-credentials
 
     - uses: yaml-update
       as: update-image
@@ -40,8 +38,7 @@ spec:
     - uses: git-push
       config:
         path: ./out
-      auth:
-        secret: github-credentials
+
 
     - uses: argocd-update
       config:
