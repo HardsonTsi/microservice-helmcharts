@@ -19,7 +19,7 @@ spec:
         repoURL: ${{ vars.repoURL }}
         checkout:
           - branch: ${{ vars.branch }}
-            path: ./out
+            path: ./main
           - branch: ${{ vars.envPath }}
             path: ./out
             create: true

@@ -19,7 +19,10 @@ spec:
         repoURL: ${{ vars.repoURL }}
         checkout:
           - branch: ${{ vars.branch }}
+            path: ./main
+          - branch: ${{ vars.envPath }}
             path: ./out
+#            create: true
 
     - uses: yaml-update
       as: update-image
