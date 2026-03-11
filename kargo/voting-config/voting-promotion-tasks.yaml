@@ -38,8 +38,23 @@ spec:
         message: ${{ task.outputs['update-image'].commitMessage }}
 
     - uses: git-push
+      as: push
       config:
         path: ./out
+        generateTargetBranch: true
+
+    - uses: git-open-pr
+      as: open-pr
+      config:
+        repoURL: ${{ vars.repoURL }}
+        sourceBranch: ${{ outputs.push.branch }}
+        targetBranch: ${{ vars.branch }}
+
+    - uses: git-wait-for-pr
+      as: wait-for-pr
+      config:
+        repoURL: ${{ vars.repoURL }}
+        prNumber: ${{ outputs['open-pr'].prNumber }}
 
     - uses: argocd-update
       config:

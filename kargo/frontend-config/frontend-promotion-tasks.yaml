@@ -36,6 +36,7 @@ spec:
         message: ${{ task.outputs['update-image'].commitMessage }}
 
     - uses: git-push
+      as: push
       config:
         path: ./out
         generateTargetBranch: true
@@ -44,14 +45,14 @@ spec:
       as: open-pr
       config:
         repoURL: ${{ vars.repoURL }}
-        createTargetBranch: true
-        sourceBranchFrom: push
+        sourceBranch: ${{ outputs.push.branch }}
         targetBranch: ${{ vars.branch }}
 
-    - uses: git-merge-pr
+    - uses: git-wait-for-pr
+      as: wait-for-pr
       config:
-        repoURL: https://github.com/example/repo.git
-        prNumber: ${{ outputs['open-pr'].pr.id  }}
+        repoURL: ${{ vars.repoURL }}
+        prNumber: ${{ outputs['open-pr'].id }}
 
     - uses: argocd-update
       config:
