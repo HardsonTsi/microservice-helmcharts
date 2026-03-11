@@ -20,8 +20,9 @@ spec:
         checkout:
           - branch: ${{ vars.branch }}
             path: ./out
-        auth:
-          secret: github-credentials
+          - branch: ${{ vars.envPath }}
+            path: ./out
+            create: true
 
     - uses: yaml-update
       as: update-image
@@ -41,7 +42,7 @@ spec:
       as: push
       config:
         path: ./out
-        generateTargetBranch: true
+        targetBranch: ${{ vars.envPath }}
 
     - uses: git-open-pr
       as: open-pr

@@ -39,20 +39,26 @@ spec:
       as: push
       config:
         path: ./out
-        generateTargetBranch: true
+        targetBranch: ${{ vars.envPath }}
 
     - uses: git-open-pr
       as: open-pr
       config:
         repoURL: ${{ vars.repoURL }}
-        sourceBranch: ${{ outputs.push.branch }}
+        sourceBranch: ${{ vars.envPath }}
         targetBranch: ${{ vars.branch }}
 
-    - uses: git-wait-for-pr
-      as: wait-for-pr
+    - uses: git-merge-pr
       config:
         repoURL: ${{ vars.repoURL }}
         prNumber: ${{ outputs['open-pr'].id }}
+        wait: true
+
+#    - uses: git-wait-for-pr
+#      as: wait-for-pr
+#      config:
+#        repoURL: ${{ vars.repoURL }}
+#        prNumber: ${{ outputs['open-pr'].id }}
 
     - uses: argocd-update
       config:
