@@ -3,6 +3,8 @@ kind: AppProject
 metadata:
   name: craftista
   namespace: argocd
+  annotations:
+    kargo.akuity.io/authorized-stage: 'craftista:*'
 spec:
   description: Project for Craftista microservices
   sourceRepos:

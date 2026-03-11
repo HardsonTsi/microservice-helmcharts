@@ -45,3 +45,4 @@ spec:
       config:
         apps:
           - name: ${{ vars.argocdApp }}
+            namespace: argocd

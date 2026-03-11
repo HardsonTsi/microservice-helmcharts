@@ -39,8 +39,8 @@ spec:
       config:
         path: ./out
 
-
     - uses: argocd-update
       config:
         apps:
           - name: ${{ vars.argocdApp }}
+            namespace: argocd
